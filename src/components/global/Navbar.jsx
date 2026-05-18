@@ -226,10 +226,7 @@ const Navbar = () => {
                 <FiCalendar className="w-4 h-4" /> My Bookings
               </Link>
               <button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  console.log("Logging out...");
-                }}
+                onClick={async () => await authClient.signOut()}
                 className="flex items-center gap-3 px-2 py-2 text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 rounded-xl w-full text-left"
               >
                 <FiLogOut className="w-4 h-4" /> Log Out
