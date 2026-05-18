@@ -14,15 +14,13 @@ import {
   FiPlus,
 } from "react-icons/fi";
 import { useState, useEffect } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const user = {
-    name: "Salman Sahed",
-    email: "salman@example.com",
-    image: "https://img.heroui.chat/image/avatar?w=400&h=400&u=3",
-  };
+  const { data } = authClient.useSession();
+  console.log("Session Data:", data);
+  const user = data?.user;
 
   useEffect(() => {
     const handleResize = () => {
@@ -137,7 +135,7 @@ const Navbar = () => {
 
                     {/* Log Out Button */}
                     <button
-                      onClick={() => console.log("Logging out...")}
+                      onClick={async () => await authClient.signOut()}
                       className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 rounded-xl w-full text-left transition-all"
                     >
                       <FiLogOut className="w-4 h-4" />
