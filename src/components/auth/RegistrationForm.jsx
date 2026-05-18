@@ -40,6 +40,11 @@ const RegistrationForm = () => {
       router.push("/login");
     }
   };
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <Form
@@ -207,6 +212,7 @@ const RegistrationForm = () => {
       {/* Social Login Button */}
       <div className="flex flex-col gap-3 items-center justify-center">
         <Button
+          onClick={handleGoogleLogin}
           variant="secondary"
           className="h-12 w-full font-medium rounded-xl text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 shadow-xs transition-all duration-200 active:scale-98"
         >
