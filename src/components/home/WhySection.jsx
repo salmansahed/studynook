@@ -1,7 +1,7 @@
 import { FiCalendar, FiShield, FiSliders } from "react-icons/fi";
 
 const WhySection = () => {
-    // Card data for the "Why StudyNook?" section
+  // Card data objects with icons, titles, and descriptions
   const cards = [
     {
       icon: (
@@ -30,10 +30,7 @@ const WhySection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-white dark:bg-zinc-950 py-20 overflow-hidden">
-      {/* Background blur effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 bg-indigo-500/5 dark:bg-indigo-500/2 rounded-full blur-[100px] pointer-events-none" />
-
+    <section className="relative w-full py-20 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl relative z-10 text-center">
         {/* Section Heading */}
         <div className="space-y-2 mb-16">
@@ -74,9 +71,6 @@ const WhySection = () => {
           ))}
         </div>
       </div>
-
-      {/* Background grid line pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size-[14px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
     </section>
   );
 };

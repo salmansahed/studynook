@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-// react-icons থেকে তোর প্রজেক্ট থিমের সাথে মানানসই মিনিমাল আইকন নিলাম
 import { FiSearch, FiClock, FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
 const HowItWorks = () => {
@@ -34,10 +31,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="relative w-full bg-white dark:bg-zinc-950 py-20 overflow-hidden">
-      <div className="absolute top-0 right-1/4 size-96 bg-purple-500/5 dark:bg-purple-500/2 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 size-96 bg-indigo-500/5 dark:bg-indigo-500/2 rounded-full blur-[120px] pointer-events-none" />
-
+    <section className="relative w-full py-20 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl relative z-10 text-center">
         {/* Heading Section */}
         <div className="space-y-3 mb-16">
