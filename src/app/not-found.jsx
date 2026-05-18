@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiArrowLeft, FiHome } from "react-icons/fi";
 
-export default function NotFound() {
+import React from "react";
+
+const NotFound = () => {
   const router = useRouter();
 
   return (
@@ -57,4 +59,6 @@ export default function NotFound() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-size-[16px_28px] mask-[radial-gradient(ellipse_60%_60%_at_50%_50%,#000_60%,transparent_100%)] pointer-events-none z-0" />
     </div>
   );
-}
+};
+
+export default NotFound;

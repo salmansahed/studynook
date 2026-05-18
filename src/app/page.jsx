@@ -1,5 +1,6 @@
 import Banner from "@/components/home/Banner";
 import HowItWorks from "@/components/home/HowItWorks";
+import LatestRooms from "@/components/home/LatestRooms";
 import WhySection from "@/components/home/WhySection";
 
 const Home = () => {
@@ -11,6 +12,8 @@ const Home = () => {
 
       <div className="relative z-10 w-full">
         <Banner />
+
+        <LatestRooms />
 
         <WhySection />
 
