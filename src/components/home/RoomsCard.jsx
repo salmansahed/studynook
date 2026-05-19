@@ -8,7 +8,7 @@ const RoomsCard = ({ room }) => {
     image,
     name,
     description,
-    pricePerHour,
+    hourlyRate,
     floor,
     capacity,
     bookings,
@@ -26,7 +26,7 @@ const RoomsCard = ({ room }) => {
         />
         {/* Price Tag */}
         <span className="absolute top-4 right-4 bg-[#e0f2fe] text-[#0369a1] text-xs font-bold px-2.5 py-1 rounded-md border border-[#bae6fd]">
-          ${pricePerHour}/hr
+          ${hourlyRate}/hr
         </span>
       </div>
 

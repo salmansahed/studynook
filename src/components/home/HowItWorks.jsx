@@ -1,3 +1,4 @@
+import { Button } from "@heroui/react";
 import Link from "next/link";
 import { FiSearch, FiClock, FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
@@ -82,10 +83,10 @@ const HowItWorks = () => {
         {/* Bottom Button Section */}
         <div className="mt-16 flex justify-center">
           <Link href="/rooms">
-            <button className="h-12 px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group">
+            <Button className="h-12 px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group">
               Start Browsing
               <FiArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
