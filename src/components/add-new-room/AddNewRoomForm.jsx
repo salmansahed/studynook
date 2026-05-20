@@ -20,7 +20,14 @@ import { IoRefreshOutline, IoRocketOutline } from "react-icons/io5";
 const AddNewRoomForm = () => {
   const { data } = authClient.useSession();
   const userId = data?.user?.id;
-
+  const userName = data?.user?.name;
+  const userImage = data?.user?.image;
+  const userEmail = data?.user?.email;
+  const formattedDate = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -35,6 +42,10 @@ const AddNewRoomForm = () => {
       hourlyRate: Number(restData.hourlyRate),
       amenities: selectedAmenities,
       ownerId: userId,
+      ownerName: userName,
+      ownerImage: userImage,
+      ownerEmail: userEmail,
+      listedDate: formattedDate,
     };
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
       method: "POST",
@@ -44,7 +55,6 @@ const AddNewRoomForm = () => {
       body: JSON.stringify(finalRoomData),
     });
     const data = await res.json();
-    console.log("Server Data =>", data);
   };
   return (
     <Form

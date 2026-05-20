@@ -8,7 +8,6 @@ const RoomsPage = async ({ searchParams }) => {
   const amenities = getSearchParams?.amenities || "";
   const minPrice = getSearchParams?.minPrice || "";
   const maxPrice = getSearchParams?.maxPrice || "";
-  console.log("search =>", searchInput);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms?search=${searchInput}&amenities=${amenities}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
     { cache: "no-store" },

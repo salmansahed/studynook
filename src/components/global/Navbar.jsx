@@ -19,7 +19,6 @@ import { authClient } from "@/lib/auth-client";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data } = authClient.useSession();
-  console.log("Session Data:", data);
   const user = data?.user;
 
   useEffect(() => {

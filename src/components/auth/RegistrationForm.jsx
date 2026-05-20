@@ -25,7 +25,6 @@ const RegistrationForm = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
-    console.log("User Data =>", userData);
 
     const { data, error } = await authClient.signUp.email({
       name: userData.name,

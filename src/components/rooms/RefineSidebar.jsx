@@ -71,10 +71,11 @@ const RefineSidebar = () => {
   };
 
   const AMENITIES_OPTIONS = [
-    "Wi-Fi",
-    "Quiet Zone",
-    "Reading Lamps",
+    "Whiteboard",
     "Projector",
+    "Wi-Fi",
+    "Power Outlets",
+    "Quiet Zone",
     "Air Conditioning",
   ];
 
