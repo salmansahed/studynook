@@ -2,6 +2,7 @@ import RoomsCard from "@/components/home/RoomsCard";
 import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
 import { headers } from "next/headers";
+import Link from "next/link";
 import { HiPlus } from "react-icons/hi";
 import { IoAddCircleOutline, IoLibraryOutline } from "react-icons/io5";
 
@@ -27,10 +28,12 @@ const MyListingsPage = async () => {
             study spaces on StudyNook.
           </p>
         </div>
-        <Button className="h-10 sm:h-12 px-4 sm:px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group">
-          <HiPlus className="group-hover:scale-150 transition-all duration-500" />
-          Add Room
-        </Button>
+        <Link href="/add-room">
+          <Button className="h-10 sm:h-12 px-4 sm:px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group">
+            <HiPlus className="group-hover:scale-150 transition-all duration-500" />
+            Add Room
+          </Button>
+        </Link>
       </div>
       {myRooms.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -15,9 +15,12 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { IoRefreshOutline, IoRocketOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 const AddNewRoomForm = () => {
+  const router = useRouter();
   const { data } = authClient.useSession();
   const userId = data?.user?.id;
   const userName = data?.user?.name;
@@ -55,6 +58,16 @@ const AddNewRoomForm = () => {
       body: JSON.stringify(finalRoomData),
     });
     const data = await res.json();
+    if (data.insertedId) {
+      toast.success("Room created successfully!", {
+        position: "top-center",
+      });
+      router.push("/my-listings");
+    } else{
+      toast.error("Failed to create room. Please try again.", {
+        position: "top-center",
+      });
+    }
   };
   return (
     <Form

@@ -11,6 +11,7 @@ import {
   IoCheckmarkCircle,
 } from "react-icons/io5";
 import EditForm from "./EditForm";
+import DeleteBtn from "./DeleteBtn";
 
 const RoomDetails = async ({ room }) => {
   const session = await auth.api.getSession({
@@ -62,7 +63,7 @@ const RoomDetails = async ({ room }) => {
                 {name}
               </h1>
               <p className="text-sm text-gray-500 font-medium">
-                Listed {listedDate} 20 May 2024
+                Listed {listedDate}
               </p>
             </div>
 
@@ -138,9 +139,7 @@ const RoomDetails = async ({ room }) => {
             {userId === ownerId && (
               <div className="flex justify-between items-center gap-4">
                 <EditForm room={room} />
-                <Button variant="danger-soft" className="rounded-lg w-full">
-                  Delete
-                </Button>
+                <DeleteBtn room={room} />
               </div>
             )}
           </div>
