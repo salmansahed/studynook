@@ -10,13 +10,13 @@ import {
   IoCalendarOutline,
   IoCheckmarkCircle,
 } from "react-icons/io5";
+import EditForm from "./EditForm";
 
 const RoomDetails = async ({ room }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const userId = session?.user?.id;
-  console.log("Session Data =>", userId);
   const {
     image,
     name,
@@ -137,9 +137,7 @@ const RoomDetails = async ({ room }) => {
             </Button>
             {userId === ownerId && (
               <div className="flex justify-between items-center gap-4">
-                <Button variant="outline" className="rounded-lg w-full">
-                  Edit
-                </Button>
+                <EditForm room={room} />
                 <Button variant="danger-soft" className="rounded-lg w-full">
                   Delete
                 </Button>

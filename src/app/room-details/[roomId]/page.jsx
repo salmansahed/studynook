@@ -1,8 +1,6 @@
 import RoomDetails from "@/components/room-details/RoomDetails";
-
 const RoomDetailsPage = async ({ params }) => {
   const { roomId } = await params;
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${roomId}`,
     {
