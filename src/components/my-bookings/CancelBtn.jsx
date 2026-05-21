@@ -3,6 +3,7 @@
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { HiOutlineMinus } from "react-icons/hi";
+import { toast } from "react-toastify";
 const CancelBtn = ({ booking }) => {
   const router = useRouter();
   const handleCancel = async (bookingId) => {
@@ -18,6 +19,9 @@ const CancelBtn = ({ booking }) => {
     );
     const data = await res.json();
     if (data.modifiedCount > 0) {
+      toast.success("Booking cancelled successfully!", {
+        position: "top-center",
+      });
       router.refresh("/my-bookings");
     }
   };

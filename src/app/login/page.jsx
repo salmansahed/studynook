@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "StudyNook - Login",
+};
+
 import LoginForm from "@/components/auth/LoginForm";
 
 const LoginPage = () => {

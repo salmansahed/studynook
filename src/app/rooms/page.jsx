@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'StudyNook - Rooms',
+}
+
 import RoomsCard from "@/components/home/RoomsCard";
 import RefineSidebar from "@/components/rooms/RefineSidebar";
 import { MdOutlineOtherHouses } from "react-icons/md";

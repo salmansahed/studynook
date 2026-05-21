@@ -36,7 +36,7 @@ const LoginForm = () => {
       callbackURL: "/",
     });
     if (error) {
-      toast.error(error.message);
+      toast.error("Login failed: " + error.message);
     } else {
       toast.success("Login successful! Redirecting...");
       router.push("/");

@@ -34,8 +34,9 @@ const RegistrationForm = () => {
       callbackURL: "/",
     });
     if (error) {
-      toast.error(error.message);
+      toast.error("Registration failed: " + error.message);
     } else {
+      toast.success("Registration successful! Redirecting to login...");
       router.push("/login");
     }
   };

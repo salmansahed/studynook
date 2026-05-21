@@ -20,6 +20,7 @@ const RoomDetails = async ({ room }) => {
   });
   const userId = session?.user?.id;
   const {
+    _id,
     image,
     name,
     description,
@@ -28,12 +29,18 @@ const RoomDetails = async ({ room }) => {
     capacity,
     amenities,
     listedDate,
-    totalBookings,
     ownerName,
     ownerImage,
     ownerEmail,
     ownerId,
   } = room;
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`);
+  const totalBookingsData = await res.json();
+  const totalBookings = totalBookingsData.filter(
+    (booking) => booking.roomId === _id,
+  ).length;
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 lg:py-14">
       {/* Back Button */}
@@ -60,10 +67,10 @@ const RoomDetails = async ({ room }) => {
           {/* Title + Booking Badge */}
           <div className="flex justify-between items-start sm:flex-row flex-col gap-4 sm:gap-6">
             <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                 {name}
               </h1>
-              <p className="text-sm text-gray-500 font-medium">
+              <p className="text-sm text-gray-500 dark:text-gray-300 font-medium">
                 Listed {listedDate}
               </p>
             </div>
@@ -72,19 +79,19 @@ const RoomDetails = async ({ room }) => {
             <div>
               <p className="flex items-center gap-2 border rounded-full px-3 py-1 bg-gray-300 text-pink-600">
                 <IoCheckmarkCircle className="text-purple-600" />
-                {totalBookings || 0} bookings
+                {totalBookings } bookings
               </p>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-gray-600 text-sm sm:text-base max-w-3xl">
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-3xl">
             {description}
           </p>
 
           {/* Amenities Section */}
           <div className="pt-6 sm:pt-8 border-t border-[#d8d1c7]/60">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-5">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5">
               Amenities
             </h2>
 
@@ -93,7 +100,7 @@ const RoomDetails = async ({ room }) => {
               {amenities?.map((amenity, idx) => (
                 <span
                   key={idx}
-                  className="border px-4 rounded-full py-1.5 bg-gray-100"
+                  className="border px-4 rounded-full py-1.5 bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-300"
                 >
                   {amenity}
                 </span>
@@ -105,35 +112,36 @@ const RoomDetails = async ({ room }) => {
         {/* Booking Card */}
         <div className="lg:sticky lg:top-10 space-y-6 w-full">
           {/* Booking Card Box */}
-          <div className="bg-white border border-gray-300 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
+          <div className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-400 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
             {/* Price Row */}
             <div className="flex items-end justify-between border-b border-gray-300 pb-4">
-              <h2 className="text-4xl sm:text-5xl font-black text-indigo-600 tracking-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
                 ${hourlyRate}
               </h2>
-              <p className="text-gray-500 text-xl font-medium">per hour</p>
+              <p className="text-gray-500 dark:text-gray-300 text-xl font-medium">per hour</p>
             </div>
 
             {/* Specifications Detail Info */}
             <div className="space-y-4 text-sm sm:text-base">
-              <div className="flex items-center gap-3.5 text-[#18352f]/90 font-medium">
+              <div className="flex items-center gap-3.5 text-[#18352f]/90 dark:text-gray-200 font-medium">
                 <IoLayersOutline className="text-xl text-gray-400" />
                 <span>{floor} Floor</span>
               </div>
 
-              <div className="flex items-center gap-3.5 text-[#18352f]/90 font-medium">
+              <div className="flex items-center gap-3.5 text-[#18352f]/90 dark:text-gray-200 font-medium">
                 <IoPeopleOutline className="text-xl text-gray-400" />
                 <span>Up to {capacity} people</span>
               </div>
 
-              <div className="flex items-center gap-3.5 text-[#18352f]/90 font-medium">
+              <div className="flex items-center gap-3.5 text-[#18352f]/90 dark:text-gray-200 font-medium">
                 <IoCalendarOutline className="text-xl text-gray-400" />
-                <span>{totalBookings || 0} total bookings</span>
+                <span>{totalBookings} total bookings</span>
               </div>
             </div>
 
             {/* Book Now Button */}
             <BookNowBtn room={room} />
+            {/* Edit/Delete Buttons */}
             {userId === ownerId && (
               <div className="flex justify-between items-center gap-4">
                 <EditForm room={room} />
@@ -143,8 +151,8 @@ const RoomDetails = async ({ room }) => {
           </div>
 
           {/* Listed By Card Box */}
-          <div className="bg-white border border-gray-300 rounded-2xl p-5 sm:p-6 shadow-xs">
-            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-extrabold mb-4">
+          <div className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-400 rounded-2xl p-5 sm:p-6 shadow-xs">
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-500 dark:text-gray-300 font-extrabold mb-4">
               Listed By
             </p>
 
@@ -158,10 +166,10 @@ const RoomDetails = async ({ room }) => {
               />
 
               <div className="min-w-0">
-                <h3 className="font-bold text-base sm:text-lg text-[#18352f] truncate">
+                <h3 className="font-bold text-base sm:text-lg text-[#18352f] dark:text-white truncate">
                   {ownerName}
                 </h3>
-                <p className="text-gray-500 text-xs sm:text-sm truncate">
+                <p className="text-gray-500 dark:text-gray-300 text-xs sm:text-sm truncate">
                   {ownerEmail}
                 </p>
               </div>

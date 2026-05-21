@@ -72,7 +72,7 @@ const EditForm = ({ room }) => {
   return (
     <div>
       <Modal>
-        <Button variant="outline" className="rounded-lg w-full">
+        <Button variant="outline" className="rounded-lg w-full dark:border-gray-400">
           <IoCreateOutline />
           Update
         </Button>

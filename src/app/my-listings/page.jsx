@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "StudyNook - My Listings",
+};
+
 import RoomsCard from "@/components/home/RoomsCard";
 import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
@@ -22,10 +26,12 @@ const MyListingsPage = async () => {
           <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
             My Listings
           </h1>
-          <p className="text-gray-700 text-lg">
+          <p className="text-gray-700 dark:text-gray-300 text-lg">
             Manage and monitor your{" "}
-            <span className="text-indigo-600">{myRooms.length}</span> active
-            study spaces on StudyNook.
+            <span className="text-indigo-600 dark:text-indigo-500">
+              {myRooms.length}
+            </span>{" "}
+            active study spaces on StudyNook.
           </p>
         </div>
         <Link href="/add-room">

@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "StudyNook - Room Details",
+};
+
 import RoomDetails from "@/components/room-details/RoomDetails";
 const RoomDetailsPage = async ({ params }) => {
   const { roomId } = await params;

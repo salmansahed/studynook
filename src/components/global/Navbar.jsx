@@ -66,6 +66,11 @@ const Navbar = () => {
             <li className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
               <Link href="/rooms">Rooms</Link>
             </li>
+            {user && (
+              <li className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <Link href="/add-room">Add Room</Link>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -105,14 +110,6 @@ const Navbar = () => {
 
                   {/* User Actions */}
                   <div className="flex flex-col gap-0.5">
-                    <Link
-                      href="/add-room"
-                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition-all"
-                    >
-                      <FiPlus className="w-4 h-4" />
-                      <span>Add Room</span>
-                    </Link>
-
                     <Link
                       href="/my-listings"
                       className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition-all"

@@ -21,7 +21,7 @@ const DeleteBtn = ({ room }) => {
   return (
     <div>
       <AlertDialog>
-        <Button variant="danger-soft" className="rounded-lg w-full">
+        <Button variant="danger-soft" className="rounded-lg w-full dark:text-orange-400 dark:bg-black">
           <MdDeleteOutline />
           Delete
         </Button>

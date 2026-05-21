@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "StudyNook - Register",
+};
+
 import RegistrationForm from "@/components/auth/RegistrationForm";
 
 const RegisterPage = () => {

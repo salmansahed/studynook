@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "StudyNook - Add Room",
+};
+
 import AddNewRoomForm from "@/components/add-new-room/AddNewRoomForm";
 
 const AddRoom = () => {
