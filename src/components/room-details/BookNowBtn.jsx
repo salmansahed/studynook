@@ -69,12 +69,14 @@ const BookNowBtn = ({ room }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const restData = Object.fromEntries(formData.entries());
+    const startHour = Number(startTime.split(":")[0]);
+    const endHour = Number(endTime.split(":")[0]);
     const bookingData = {
       roomId: _id,
       roomName: name,
       date: formattedDate,
-      startTime: startTime,
-      endTime: endTime,
+      startTime: startHour,
+      endTime: endHour,
       userId: userId,
       userName: userName,
       userImage: userImage,
@@ -98,6 +100,14 @@ const BookNowBtn = ({ room }) => {
         position: "top-center",
       });
       router.refresh("/my-bookings");
+    }
+    if (!res.ok) {
+      toast.error(
+        "This time slot is already booked. Please choose another time.",
+        {
+          position: "top-center",
+        },
+      );
     }
   };
 
