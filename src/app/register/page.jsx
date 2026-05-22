@@ -3,8 +3,18 @@ export const metadata = {
 };
 
 import RegistrationForm from "@/components/auth/RegistrationForm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const RegisterPage = () => {
+const RegisterPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+  if (user) {
+    return redirect("/");
+  }
   return (
     <div className="flex items-center justify-center my-10 px-3">
       <RegistrationForm />

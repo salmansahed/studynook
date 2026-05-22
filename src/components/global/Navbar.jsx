@@ -24,7 +24,6 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
-  console.log("check ispending =>", isPending);
 
   useEffect(() => {
     const handleResize = () => {
