@@ -4,6 +4,9 @@ import RoomsCard from "./RoomsCard";
 const LatestRooms = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/available-study-rooms`,
+    {
+      cache: "no-store",
+    },
   );
   const rooms = await res.json();
 

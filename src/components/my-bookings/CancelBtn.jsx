@@ -19,6 +19,7 @@ const CancelBtn = ({ booking }) => {
           authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify({ status: "Cancelled" }),
+        cache: "no-store",
       },
     );
     const data = await res.json();

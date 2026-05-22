@@ -18,11 +18,12 @@ const DeleteBtn = ({ room }) => {
         headers: {
           authorization: `Bearer ${tokenData?.token}`,
         },
+        cache: "no-store",
       },
     );
     const data = await res.json();
     if (data.deletedCount > 0) {
-      toast.error("Room deleted successfully!", { position: "top-center" });
+      toast.success("Room deleted successfully!", { position: "top-center" });
       router.push("/my-listings");
     }
   };

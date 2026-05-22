@@ -99,6 +99,7 @@ const BookNowBtn = ({ room }) => {
             authorization: `Bearer ${tokenData?.token}`,
           },
           body: JSON.stringify(bookingData),
+          cache: "no-store",
         },
       );
 
@@ -111,6 +112,7 @@ const BookNowBtn = ({ room }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ roomId: _id }),
+          cache: "no-store",
         }).catch((err) => console.error("Count Update Failed:", err));
 
         router.refresh();

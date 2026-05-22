@@ -37,9 +37,11 @@ const RoomDetails = async ({ room }) => {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/bookingsCount/${_id}`,
+    {
+      cache: "no-store",
+    },
   );
   const bookingsCounts = await res.json();
-  console.log("Existing Bookings for this Room:", bookingsCounts);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 lg:py-14">

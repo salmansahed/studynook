@@ -59,6 +59,7 @@ const EditForm = ({ room }) => {
           authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(finalRoomData),
+        cache: "no-store",
       },
     );
     const data = await res.json();

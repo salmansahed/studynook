@@ -22,6 +22,7 @@ const MyBookingsPage = async () => {
     headers: {
       authorization: `Bearer ${token}`,
     },
+    cache: "no-store",
   });
   const bookings = await res.json();
   const session = await auth.api.getSession({

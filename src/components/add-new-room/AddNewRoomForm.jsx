@@ -59,6 +59,7 @@ const AddNewRoomForm = () => {
         authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(finalRoomData),
+      cache: "no-store",
     });
     const data = await res.json();
     if (data.insertedId) {
@@ -115,18 +116,7 @@ const AddNewRoomForm = () => {
             <FieldError />
           </TextField>
           {/* Image URL Field */}
-          <TextField
-            isRequired
-            name="image"
-            validate={(value) => {
-              if (!value) return "Image URL is required";
-              const isImage = /\.(jpeg|jpg|gif|png|webp)$/i.test(value);
-              if (!isImage) {
-                return "Please enter a valid image URL ending with .jpg, .jpeg, .png, or .webp";
-              }
-              return null;
-            }}
-          >
+          <TextField isRequired name="image">
             <Label>Image URL</Label>
             <Input
               type="url"
