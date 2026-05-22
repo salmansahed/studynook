@@ -16,13 +16,15 @@ import {
 import { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 import { usePathname, useRouter } from "next/navigation";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const currentPathname = usePathname();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data } = authClient.useSession();
+  const { data, isPending } = authClient.useSession();
   const user = data?.user;
+  console.log("check ispending =>", isPending);
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,14 +70,20 @@ const Navbar = () => {
         <div className="hidden md:block">
           {" "}
           <ul className="flex items-center gap-8 font-medium text-sm text-zinc-600 dark:text-zinc-300">
-            <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
+            <li
+              className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}
+            >
               <Link href="/">Home</Link>
             </li>
-            <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/rooms" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
+            <li
+              className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/rooms" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}
+            >
               <Link href="/rooms">Rooms</Link>
             </li>
             {user && (
-              <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/add-room" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
+              <li
+                className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/add-room" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}
+              >
                 <Link href="/add-room">Add Room</Link>
               </li>
             )}
@@ -87,7 +95,9 @@ const Navbar = () => {
           {" "}
           {/* Theme Switch Button */}
           <ThemeSwitch />
-          {user ? (
+          {isPending ? (
+            <FaUserCircle className="w-10 h-10 text-gray-400" />
+          ) : user ? (
             /* User Profile Dropdown (when user is logged in) */
             <div className="relative group">
               {/* User Avatar */}
