@@ -10,11 +10,11 @@ import Link from "next/link";
 import { HiPlus } from "react-icons/hi";
 import { IoAddCircleOutline, IoLibraryOutline } from "react-icons/io5";
 
-const { token } = await auth.api.getToken({
-  headers: await headers(),
-});
-
 const MyListingsPage = async () => {
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const session = await auth.api.getSession({
     headers: await headers(),
   });
