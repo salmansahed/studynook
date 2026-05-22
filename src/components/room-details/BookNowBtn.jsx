@@ -87,30 +87,43 @@ const BookNowBtn = ({ room }) => {
       image: image,
     };
 
-    const { data: tokenData } = await authClient.token();
+    try {
+      const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`,
-      },
-      body: JSON.stringify(bookingData),
-    });
-    const data = await res.json();
-    if (data.insertedId) {
-      toast.success("Room booked successfully!", {
-        position: "top-center",
-      });
-      router.refresh("/my-bookings");
-    }
-    if (!res.ok) {
-      toast.error(
-        "This time slot is already booked. Please choose another time.",
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`,
         {
-          position: "top-center",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(bookingData),
         },
       );
+
+      const data = await res.json();
+
+      if (res.ok && data.insertedId) {
+        toast.success("Room booked successfully!", { position: "top-center" });
+
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookingsCount`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ roomId: _id }),
+        }).catch((err) => console.error("Count Update Failed:", err));
+
+        router.refresh();
+      } else {
+        toast.error(
+          data.message ||
+            "This time slot is already booked. Please choose another time.",
+          { position: "top-center" },
+        );
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      toast.error("Something went wrong, please try again.");
     }
   };
 

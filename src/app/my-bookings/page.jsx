@@ -14,7 +14,15 @@ import { FaHouse } from "react-icons/fa6";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 const MyBookingsPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const bookings = await res.json();
   const session = await auth.api.getSession({
     headers: await headers(),

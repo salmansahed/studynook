@@ -35,11 +35,11 @@ const RoomDetails = async ({ room }) => {
     ownerId,
   } = room;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`);
-  const totalBookingsData = await res.json();
-  const totalBookings = totalBookingsData.filter(
-    (booking) => booking.roomId === _id,
-  ).length;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/bookingsCount/${_id}`,
+  );
+  const bookingsCounts = await res.json();
+  console.log("Existing Bookings for this Room:", bookingsCounts);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 lg:py-14">
@@ -79,7 +79,7 @@ const RoomDetails = async ({ room }) => {
             <div>
               <p className="flex items-center gap-2 border rounded-full px-3 py-1 bg-gray-300 text-pink-600">
                 <IoCheckmarkCircle className="text-purple-600" />
-                {totalBookings} bookings
+                {bookingsCounts.count} bookings
               </p>
             </div>
           </div>
@@ -137,7 +137,7 @@ const RoomDetails = async ({ room }) => {
 
               <div className="flex items-center gap-3.5 text-[#18352f]/90 dark:text-gray-200 font-medium">
                 <IoCalendarOutline className="text-xl text-gray-400" />
-                <span>{totalBookings} total bookings</span>
+                <span>{bookingsCounts.count} total bookings</span>
               </div>
             </div>
 
