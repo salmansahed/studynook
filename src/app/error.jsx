@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@heroui/react"; // HeroUI button import
+import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const ErrorPage = () => {
@@ -26,7 +26,9 @@ const ErrorPage = () => {
       </p>
       {/* Actions Buttons */}
       <div className="flex gap-4">
-        <Button variant="danger" onClick={handleTryAgain}>Try Again</Button>
+        <Button variant="danger" onClick={handleTryAgain}>
+          Try Again
+        </Button>
         <Button variant="outline" onClick={handleGoHome}>
           Go Home
         </Button>

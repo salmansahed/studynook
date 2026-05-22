@@ -38,7 +38,7 @@ const RoomDetails = async ({ room }) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/bookingsCount/${_id}`,
     {
-      cache: "no-store,",
+      cache: "no-store",
     },
   );
   const bookingsCounts = await res.json();
