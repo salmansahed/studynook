@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { MdDeleteOutline } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const DeleteBtn = ({ room }) => {
   const router = useRouter();
@@ -21,7 +22,8 @@ const DeleteBtn = ({ room }) => {
     );
     const data = await res.json();
     if (data.deletedCount > 0) {
-      router.push("/rooms");
+      toast.error("Room deleted successfully!", { position: "top-center" });
+      router.push("/my-listings");
     }
   };
   return (
