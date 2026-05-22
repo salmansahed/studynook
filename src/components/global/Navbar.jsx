@@ -15,8 +15,11 @@ import {
 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const currentPathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data } = authClient.useSession();
   const user = data?.user;
@@ -28,6 +31,11 @@ const Navbar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleLogOut = async () => {
+    await authClient.signOut();
+    router.refresh();
+  };
 
   return (
     <div className="border-b border-black/5 dark:border-white/10 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md sticky top-0 z-50 py-3">
@@ -60,14 +68,14 @@ const Navbar = () => {
         <div className="hidden md:block">
           {" "}
           <ul className="flex items-center gap-8 font-medium text-sm text-zinc-600 dark:text-zinc-300">
-            <li className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
               <Link href="/">Home</Link>
             </li>
-            <li className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/rooms" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
               <Link href="/rooms">Rooms</Link>
             </li>
             {user && (
-              <li className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+              <li className={`hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${currentPathname === "/add-room" ? "text-indigo-600 dark:text-indigo-400 underline underline-offset-2" : " "}`}>
                 <Link href="/add-room">Add Room</Link>
               </li>
             )}
@@ -131,7 +139,7 @@ const Navbar = () => {
 
                     {/* Log Out Button */}
                     <button
-                      onClick={async () => await authClient.signOut()}
+                      onClick={handleLogOut}
                       className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 rounded-xl w-full text-left transition-all"
                     >
                       <FiLogOut className="w-4 h-4" />
@@ -222,7 +230,7 @@ const Navbar = () => {
                 <FiCalendar className="w-4 h-4" /> My Bookings
               </Link>
               <button
-                onClick={async () => await authClient.signOut()}
+                onClick={handleLogOut}
                 className="flex items-center gap-3 px-2 py-2 text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/20 rounded-xl w-full text-left"
               >
                 <FiLogOut className="w-4 h-4" /> Log Out

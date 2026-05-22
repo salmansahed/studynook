@@ -143,21 +143,7 @@ const EditForm = ({ room }) => {
                           <FieldError />
                         </TextField>
                         {/* Image URL Field */}
-                        <TextField
-                          defaultValue={image}
-                          isRequired
-                          name="image"
-                          validate={(value) => {
-                            if (!value) return "Image URL is required";
-                            const isImage = /\.(jpeg|jpg|gif|png|webp)$/i.test(
-                              value,
-                            );
-                            if (!isImage) {
-                              return "Please enter a valid image URL ending with .jpg, .jpeg, .png, or .webp";
-                            }
-                            return null;
-                          }}
-                        >
+                        <TextField defaultValue={image} isRequired name="image">
                           <Label>Image URL</Label>
                           <Input
                             type="url"
