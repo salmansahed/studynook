@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Checkbox,
@@ -47,12 +48,15 @@ const EditForm = ({ room }) => {
       amenities: selectedAmenities,
     };
 
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${_id}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(finalRoomData),
       },
@@ -72,7 +76,10 @@ const EditForm = ({ room }) => {
   return (
     <div>
       <Modal>
-        <Button variant="outline" className="rounded-lg w-full dark:border-gray-400">
+        <Button
+          variant="outline"
+          className="rounded-lg w-full dark:border-gray-400"
+        >
           <IoCreateOutline />
           Update
         </Button>

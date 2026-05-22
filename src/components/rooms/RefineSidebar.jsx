@@ -6,8 +6,10 @@ import {
   Checkbox,
   CheckboxGroup,
   Input,
+  Button,
 } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { MdOutlineCancel } from "react-icons/md";
 
 const RefineSidebar = () => {
   const router = useRouter();
@@ -84,12 +86,10 @@ const RefineSidebar = () => {
       {/* Title & Reset */}
       <div className="flex justify-between items-end">
         <h1 className="text-2xl font-semibold">Refine</h1>
-        <h3
-          onClick={handleReset}
-          className="text-lg text-red-500 dark:text-white cursor-pointer hover:underline"
-        >
+        <Button onClick={handleReset} variant="danger-soft" className="dark:text-white dark:bg-gray-500 shadow">
+          <MdOutlineCancel />
           Reset
-        </h3>
+        </Button>
       </div>
       <hr className="my-6 border-black/10" />
 

@@ -10,6 +10,10 @@ import Link from "next/link";
 import { HiPlus } from "react-icons/hi";
 import { IoAddCircleOutline, IoLibraryOutline } from "react-icons/io5";
 
+const { token } = await auth.api.getToken({
+  headers: await headers(),
+});
+
 const MyListingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -17,6 +21,11 @@ const MyListingsPage = async () => {
   const userId = session?.user.id;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/owner/${userId}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
   const myRooms = await res.json();
   return (
@@ -35,8 +44,8 @@ const MyListingsPage = async () => {
           </p>
         </div>
         <Link href="/add-room">
-          <Button className="h-10 sm:h-12 px-4 sm:px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group">
-            <HiPlus className="group-hover:scale-150 transition-all duration-500" />
+          <Button className="h-10 sm:h-12 px-4 sm:px-6 bg-indigo-600 hover:bg-indigo-700 rounded-lg  group">
+            <HiPlus className="group-hover:scale-150 transition-all duration-300" />
             Add Room
           </Button>
         </Link>
@@ -66,10 +75,10 @@ const MyListingsPage = async () => {
           {/* Call-to-Action Button */}
           <Button
             href="/add-room"
-            className="h-10 sm:h-12 px-4 sm:px-6 flex items-center gap-2 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 hover:from-indigo-500 hover:to-pink-500 shadow-lg shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group"
+            className="h-10 sm:h-12 px-4 sm:px-6 rounded-lg bg-indigo-600 hover:bg-indigo-500 group"
           >
             Create Your First Listing
-            <IoAddCircleOutline className="size-5 group-hover:translate-x-0.5 transition-transform duration-200" />
+            <IoAddCircleOutline className="size-5 group-hover:scale-125 transition-all duration-300" />
           </Button>
         </div>
       )}

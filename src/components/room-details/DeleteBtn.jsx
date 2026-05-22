@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { MdDeleteOutline } from "react-icons/md";
@@ -7,10 +8,15 @@ import { MdDeleteOutline } from "react-icons/md";
 const DeleteBtn = ({ room }) => {
   const router = useRouter();
   const deleteRoom = async (roomId) => {
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${roomId}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${tokenData?.token}`,
+        },
       },
     );
     const data = await res.json();
@@ -21,7 +27,10 @@ const DeleteBtn = ({ room }) => {
   return (
     <div>
       <AlertDialog>
-        <Button variant="danger-soft" className="rounded-lg w-full dark:text-orange-400 dark:bg-black">
+        <Button
+          variant="danger-soft"
+          className="rounded-lg w-full dark:text-orange-400 dark:bg-black"
+        >
           <MdDeleteOutline />
           Delete
         </Button>

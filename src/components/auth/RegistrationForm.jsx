@@ -17,6 +17,7 @@ import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { IoPersonAddOutline } from "react-icons/io5";
 
 const RegistrationForm = () => {
   const router = useRouter();
@@ -195,8 +196,9 @@ const RegistrationForm = () => {
       <div className="flex gap-2 pt-2">
         <Button
           type="submit"
-          className="w-full h-12 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-98"
+          className="w-full h-12 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-300 active:scale-98 group"
         >
+          <IoPersonAddOutline className="group-hover:scale-125 transition-all duration-300" />
           Create Account
         </Button>
       </div>

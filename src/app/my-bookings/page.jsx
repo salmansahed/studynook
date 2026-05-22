@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsPatchCheck } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
+import { FaHouse } from "react-icons/fa6";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 const MyBookingsPage = async () => {
@@ -56,7 +57,10 @@ const MyBookingsPage = async () => {
                           height={50}
                           className="border rounded object-cover w-20 h-14"
                         />
-                        <Link href={`/room-details/${booking.roomId}`} className="hover:text-blue-400">
+                        <Link
+                          href={`/room-details/${booking.roomId}`}
+                          className="hover:text-blue-400"
+                        >
                           {booking.roomName}
                         </Link>
                       </Table.Cell>
@@ -107,8 +111,9 @@ const MyBookingsPage = async () => {
           </p>
 
           <Link href="/rooms">
-            <Button className="rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 mt-4">
+            <Button className="rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 mt-4 group">
               Browse Rooms
+              <FaHouse className="group-hover:scale-125 transition-all duration-300" />
             </Button>
           </Link>
         </div>

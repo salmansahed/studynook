@@ -12,14 +12,20 @@ const LatestRooms = async () => {
       {/* Section Header */}
       <div className="flex sm:flex-row flex-col justify-between items-center gap-6 sm:gap-0 sm:items-end mb-10">
         <div>
-          <h2 className="text-3xl font-extrabold text-[#111827] dark:text-white tracking-tight">
-            Available Study Rooms
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] dark:text-white tracking-tight">
+            Available{" "}
+            <span className="bg-linear-to-r from-indigo-600 to-violet-500 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+              Study Rooms
+            </span>
           </h2>
-          <p className="mt-2 text-sm text-[#4b5563] dark:text-gray-300">
+          <p className="mt-2 text-[#4b5563] dark:text-gray-300">
             Hand-picked rooms recently added to StudyNook.
           </p>
         </div>
-        <Button variant="outline" className="rounded-lg border-gray-300 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white transition-all">
+        <Button
+          variant="outline"
+          className="rounded-lg border-gray-300 text-gray-700 dark:text-gray-300 hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white duration-300 ease-in-out dark:hover:text-white transition-all"
+        >
           View all rooms
         </Button>
       </div>

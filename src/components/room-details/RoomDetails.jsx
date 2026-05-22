@@ -79,7 +79,7 @@ const RoomDetails = async ({ room }) => {
             <div>
               <p className="flex items-center gap-2 border rounded-full px-3 py-1 bg-gray-300 text-pink-600">
                 <IoCheckmarkCircle className="text-purple-600" />
-                {totalBookings } bookings
+                {totalBookings} bookings
               </p>
             </div>
           </div>
@@ -118,7 +118,9 @@ const RoomDetails = async ({ room }) => {
               <h2 className="text-4xl sm:text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
                 ${hourlyRate}
               </h2>
-              <p className="text-gray-500 dark:text-gray-300 text-xl font-medium">per hour</p>
+              <p className="text-gray-500 dark:text-gray-300 text-xl font-medium">
+                per hour
+              </p>
             </div>
 
             {/* Specifications Detail Info */}

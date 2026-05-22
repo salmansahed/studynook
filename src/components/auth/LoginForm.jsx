@@ -18,6 +18,7 @@ import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { FiLogIn } from "react-icons/fi";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -143,8 +144,9 @@ const LoginForm = () => {
       <div className="flex gap-2 pt-2">
         <Button
           type="submit"
-          className="w-full h-12 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-200 active:scale-98"
+          className="w-full h-12 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 shadow-md shadow-indigo-600/20 rounded-xl transition-all duration-300 active:scale-98 group"
         >
+          <FiLogIn className="group-hover:translate-x-2 transition-all duration-300" />
           Login
         </Button>
       </div>

@@ -30,9 +30,9 @@ const Banner = () => {
         <Link href="/rooms" className="mt-10 w-full sm:w-auto">
           <Button
             size="lg"
-            className="w-full sm:w-auto font-semibold rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 px-8 py-6"
+            className="w-full sm:w-auto font-semibold rounded-2xl bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 text-white shadow-xl shadow-indigo-600/20 px-8 py-6 group"
           >
-            <FiGrid className="size-5" />
+            <FiGrid className="size-5 group-hover:scale-125 transition-all duration-300" />
             Explore Rooms
           </Button>
         </Link>
